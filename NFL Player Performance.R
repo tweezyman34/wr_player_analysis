@@ -25,7 +25,7 @@ fun_wr <- function(player) {
     data_yac <- aggregate(data_player$yards_after_catch, by = list(data_player$week),
                           function(x) sum(x, na.rm = TRUE))
     data_airyards <- aggregate(data_player$air_yards, by = list(data_player$week),
-                               sum)
+                               function(x) sum(x, na.rm = TRUE))
     data_fd <- aggregate(data_player$first_down_pass, by = list(data_player$week),
                          sum)
     data_epa <- aggregate(data_player$epa, by = list(data_player$week),
@@ -68,7 +68,7 @@ ggplot(data_plot, aes(x = week, y = value, col = variable)) +
              labeller = as_labeller(plot_names)) +
   labs(x = "Week",
        y = "Value",
-       title = "Analyzing WR Performance \nin 2021-22",
+       title = "Analyzing WR Performance in 2021-22",
        subtitle = "By: Dylan Wilkerson") +
   theme_dark() +
   theme(legend.position = 'none') 
